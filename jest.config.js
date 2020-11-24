@@ -33,7 +33,7 @@ module.exports = {
     // Jest serializer for snapshots
     'jest-serializer-vue'
   ],
-  collectCoverage: true,
+  // collectCoverage: true,
   collectCoverageFrom: [
     // coverage range except for npm modules
     "**/*.{js,vue}",

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npx webpack --config ./config/webpack.config.js --progress",
     "test:watch": "npx jest --watchAll --verbose",
+    "test:coverage": "npx jest --watchAll --verbose --coverage",
     "dev": "npx webpack serve --config ./config/webpack.config.dev.js --progress --open chrome"
   },
   "repository": {
