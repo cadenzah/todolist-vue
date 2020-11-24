@@ -1,0 +1,52 @@
+{
+  "name": "boilerplate-vue",
+  "version": "1.0.0",
+  "description": "Vue.js boilerplate",
+  "main": "main.js",
+  "scripts": {
+    "build": "npx webpack --config ./config/webpack.config.js --progress",
+    "test:watch": "npx jest --watchAll --verbose",
+    "dev": "npx webpack serve --config ./config/webpack.config.dev.js --progress --open chrome"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cadenzah/boilerplate-vue.git"
+  },
+  "keywords": [
+    "vuejs",
+    "vue",
+    "javascript",
+    "webpack"
+  ],
+  "author": "cadenzah <cadenzah93@gmail.com> (https://github.com/cadenzah)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cadenzah/boilerplate-vue/issues"
+  },
+  "homepage": "https://github.com/cadenzah/boilerplate-vue#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@vue/test-utils": "^1.1.1",
+    "@webpack-cli/serve": "^1.1.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.6.3",
+    "jest-serializer-vue": "^2.0.2",
+    "vue": "^2.6.12",
+    "vue-jest": "^3.0.7",
+    "vue-loader": "^15.9.5",
+    "vue-router": "^3.4.9",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.12",
+    "vuex": "^3.5.1",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {}
+}
