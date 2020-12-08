@@ -1,6 +1,6 @@
-import TodoInput from './TodoInput.vue';
+import TodoItem from './TodoItem.vue';
 
-describe(`TodoInput.vue`, () => {
+describe(`TodoItem.vue`, () => {
   describe(`GUI components and style`, () => {
     it(`has <input> element`, () => {
       
