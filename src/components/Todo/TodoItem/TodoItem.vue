@@ -1,10 +1,11 @@
 <template>
-  <p>Hi!</p>
+  <div>
+  </div>
 </template>
 
 <script>
 export default {
-  
+  name: "TodoItem",
 }
 </script>
 
