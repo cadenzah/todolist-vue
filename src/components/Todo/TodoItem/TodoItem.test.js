@@ -3,15 +3,22 @@ import TodoItem from './TodoItem.vue';
 
 let wrapper = null;
 
-describe(`TodoItem.vue`, () => {
-  describe(`# Etcs.`, () => {
-    it(`최상위 <div>`, () => {
-      wrapper = mount(TodoItem);
-      // 모든 컴포넌트를 감싸는 <div>가 존재하며, "todoitem__container" class를 가진다
-      expect(wrapper.find('div.todoitem__container').exists()).toBe(true);
-    })
-  });
+// dummy data
+const items = [
+  {
+    id: Date.now(),
+    status: 'PENDING',
+    desc: '운동하기',
+  },
+  {
+    id: Date.now() + 30,
+    status: 'DONE',
+    desc: '휴식',
+  },
+];
+ 
 
+describe(`TodoItem.vue`, () => {
   describe(`# 체크박스`, () => {
     beforeEach(() => {
       wrapper = mount(TodoItem);
@@ -32,9 +39,16 @@ describe(`TodoItem.vue`, () => {
       expect(wrapper.find('label > input').exists()).toBe(true);
       expect(wrapper.find('label > span').exists()).toBe(true);
     });
+
+    afterEach(() => {
+      wrapper = null;
+    });
   });
 
   describe(`# Contents`, () => {
+    beforeEach(() => {
+      wrapper = mount(TodoItem);
+    });
     
     it(`Wrapper 역할의 <div>`, () => {
       // 컨텐츠 영역을 감싸는 <div>가 존재하며, "todoitem-content__wrapper" class를 가진다`
@@ -43,19 +57,43 @@ describe(`TodoItem.vue`, () => {
 
     it(`컨텐츠가 표시되는 <span>`, () => {
       // <div class="todoitem-content__wrapper"> 내에 존재
-      expect(wrapper.find('.todoitem-content--wrapper > span').exists()).toBe(true);
+      expect(wrapper.find('div.todoitem-content__wrapper > span').exists()).toBe(true);
       // "todoitem-content__content" class를 가진다
       expect(wrapper.find('span.todoitem-content__content').exists()).toBe(true);
+    });
+
+    afterEach(() => {
+      wrapper = null;
     });
   })
 
   describe(`# Vue Component`, () => {
-    it(`props`, () => {
+    beforeEach(() => {
+      wrapper = mount(TodoItem, {
+        propsData: {
+          item: items[0],
+          handleUpdateTodo: () => {},
+          handleDeleteTodo: () => {},
+        },
+      });
+    });
+
+    it(`props를 데이터로 활용`, () => {
       // props로 할일 항목 처리에 필요한 것들을 모두 전달받았는지
-      const { item, handleUpdateTodo, handleDeleteTodo } = wrapper.props;
-      expect(typeof item).toBe('object');
-      expect(typeof handleUpdateTodo).toBe('function');
-      expect(typeof handleDeleteTodo).toBe('function');
+      expect(wrapper.find('.todoitem-content__content').text()).toMatch('운동하기');
+
     })
+
+    afterEach(() => {
+      wrapper = null;
+    });
   })
+
+  describe(`# Integrated`, () => {
+    it(`최상위 Wrapper <div>`, () => {
+      wrapper = mount(TodoItem);
+      // 모든 컴포넌트를 감싸는 <div>가 존재하며, "todoitem__container" class를 가진다
+      expect(wrapper.find('div.todoitem__container').exists()).toBe(true);
+    });
+  });
 });
