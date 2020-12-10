@@ -4,6 +4,14 @@ import TodoItem from './TodoItem.vue';
 let wrapper = null;
 
 describe(`TodoItem.vue`, () => {
+  describe(`# Etcs.`, () => {
+    it(`최상위 <div>`, () => {
+      wrapper = mount(TodoItem);
+      // 모든 컴포넌트를 감싸는 <div>가 존재하며, "todoitem__container" class를 가진다
+      expect(wrapper.find('div.todoitem__container').exists()).toBe(true);
+    })
+  });
+
   describe(`# 체크박스`, () => {
     beforeEach(() => {
       wrapper = mount(TodoItem);
