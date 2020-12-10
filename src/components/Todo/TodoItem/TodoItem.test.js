@@ -47,11 +47,15 @@ describe(`TodoItem.vue`, () => {
 
   describe(`# Contents`, () => {
     beforeEach(() => {
-      wrapper = mount(TodoItem);
+      wrapper = mount(TodoItem, {
+        propsData: {
+          item: items[0]
+        },
+      });
     });
     
     it(`Wrapper 역할의 <div>`, () => {
-      // 컨텐츠 영역을 감싸는 <div>가 존재하며, "todoitem-content__wrapper" class를 가진다`
+      // 컨텐츠 영역을 감싸는 <div>가 존재하며, "todoitem-content__wrapper" class를 가진다
       expect(wrapper.find('div.todoitem-content__wrapper').exists()).toBe(true);
     });
 
@@ -79,7 +83,7 @@ describe(`TodoItem.vue`, () => {
     });
 
     it(`props를 데이터로 활용`, () => {
-      // props로 할일 항목 처리에 필요한 것들을 모두 전달받았는지
+      // item props로 전달된 데이터를 활용하여 컨텐츠를 표시한다
       expect(wrapper.find('.todoitem-content__content').text()).toMatch('운동하기');
 
     })

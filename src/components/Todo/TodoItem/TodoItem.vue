@@ -8,7 +8,9 @@
         </label>
       </div>
       <div class="todoitem-content__wrapper">
-        <span class="todoitem-content__content" />
+        <span class="todoitem-content__content" v-if="item">
+          {{ item.desc }}
+        </span>
       </div>
     </div>
   </div>
@@ -21,14 +23,12 @@ export default {
     item: {
       type: Object,
     },
-    // handleUpdateTodo: {
-    //   type: Function,
-    //   required: true,
-    // },
-    // handleDeleteTodo: {
-    //   type: Function,
-    //   required: true,
-    // }
+    handleUpdateTodo: {
+      type: Function,
+    },
+    handleDeleteTodo: {
+      type: Function,
+    }
   }
 }
 </script>
