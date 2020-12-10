@@ -8,7 +8,7 @@
         </label>
       </div>
       <div class="todoitem-content__wrapper">
-        <span class="todoitem-content__content" v-if="item">
+        <span class="todoitem-content__content">
           {{ item.desc }}
         </span>
       </div>
@@ -22,6 +22,7 @@ export default {
   props: {
     item: {
       type: Object,
+      default: () => ({ desc: '', id: Date.now(), status: 'PENDING' })
     },
     handleUpdateTodo: {
       type: Function,

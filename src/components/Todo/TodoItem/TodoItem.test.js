@@ -47,11 +47,7 @@ describe(`TodoItem.vue`, () => {
 
   describe(`# Contents`, () => {
     beforeEach(() => {
-      wrapper = mount(TodoItem, {
-        propsData: {
-          item: items[0]
-        },
-      });
+      wrapper = mount(TodoItem);
     });
     
     it(`Wrapper 역할의 <div>`, () => {
