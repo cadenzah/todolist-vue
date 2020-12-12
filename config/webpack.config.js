@@ -9,7 +9,11 @@ module.exports = (env) => {
   const buildPath = path.join(configPath, '..', 'build');
 
   const config = {
-    entry: './src/main.js',
+    entry: [
+      'core-js/stable',
+      'regenerator-runtime/runtime',
+      './src/main.js'
+    ],
     output: {
       publicPath: '/',
       filename: 'js/[name].js',
