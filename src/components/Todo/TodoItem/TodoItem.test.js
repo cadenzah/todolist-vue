@@ -1,4 +1,6 @@
 import { mount } from '@vue/test-utils';
+import sinon from 'sinon';
+
 import TodoItem from './TodoItem.vue';
 
 let wrapper = null;
@@ -40,11 +42,12 @@ describe(`TodoItem.vue`, () => {
       expect(wrapper.find('label > span').exists()).toBe(true);
     });
 
-    it(`<input>이 필요한 Attribute를 가진다`, () => {
+    it(`<input>이 필요한 Attribute를 가진다`, async () => {
+      const spy = sinon.spy();
       wrapper = mount(TodoItem, {
         propsData: {
           item: items[0],
-          handleUpdateTodo: function(e) { alert(e) },
+          handleUpdateTodo: spy,
         },
       });
       let input = wrapper.find('.todoitem-checkbox__wrapper input')
@@ -56,6 +59,9 @@ describe(`TodoItem.vue`, () => {
       expect(attributes.type).toBe('checkbox');
       // value로 id를 가져야 한다 (이후 이벤트 리스너 연동을 위함)
       expect(attributes.value).toBe(attributes.id);
+      // 클릭 이벤트가 발생하였을 때, item.id를 전달한다
+      await wrapper.find('div.todoitem-checkbox__wrapper label').trigger('click');
+      expect(spy.calledWith(items[0].id)).toBeTruthy();
     });
 
     afterEach(() => {
@@ -113,6 +119,20 @@ describe(`TodoItem.vue`, () => {
 
     it(`children으로 전달된 텍스트를 활용하여 버튼 텍스트 표시`, () => {
       expect(wrapper.find('.todoitem-button__wrapper > p').text()).toMatch('Delete');
+    });
+
+    it(`클릭 이벤트 핸들러 사용`, async () => {
+      const spy = sinon.spy();
+      wrapper = mount(TodoItem, {
+        propsData: {
+          item: items[0],
+          handleDeleteTodo: spy,
+        },
+      });
+
+      // 클릭 이벤트가 발생하였을 때, item.id를 전달한다
+      await wrapper.find('div.todoitem-button__wrapper').trigger('click')
+      expect(spy.calledWith(items[0].id)).toBeTruthy();
     });
 
     // it(`prop에 따라 다른 class 추가`, () => {
