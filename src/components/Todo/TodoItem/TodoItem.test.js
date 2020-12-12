@@ -55,7 +55,7 @@ describe(`TodoItem.vue`, () => {
       expect(wrapper.find('div.todoitem-content__wrapper').exists()).toBe(true);
     });
 
-    it(`컨텐츠가 표시되는 <span>`, () => {
+    it(`할일 내용이 표시되는 <p>`, () => {
       // <div class="todoitem-content__wrapper"> 내에 존재
       expect(wrapper.find('div.todoitem-content__wrapper > span').exists()).toBe(true);
       // "todoitem-content__content" class를 가진다
@@ -77,11 +77,11 @@ describe(`TodoItem.vue`, () => {
       expect(wrapper.find('div.todoitem-button__wrapper').exists()).toBe(true);
     });
 
-    it(`버튼이 표시되는 <button>`, () => {
+    it(`버튼 텍스트가 표시되는 <p>`, () => {
       // <div class="todoitem-content__wrapper"> 내에 존재
-      expect(wrapper.find('div.todoitem-button__wrapper > button').exists()).toBe(true);
+      expect(wrapper.find('div.todoitem-button__wrapper > p').exists()).toBe(true);
       // "todoitem-content__content" class를 가진다
-      expect(wrapper.find('button.todoitem-button__content').exists()).toBe(true);
+      expect(wrapper.find('p.todoitem-button__content').exists()).toBe(true);
     });
 
     afterEach(() => {
@@ -103,6 +103,8 @@ describe(`TodoItem.vue`, () => {
     it(`props를 데이터로 활용`, () => {
       // item props로 전달된 데이터를 활용하여 컨텐츠를 표시한다
       expect(wrapper.find('.todoitem-content__content').text()).toMatch('운동하기');
+
+      expect(wrapper.find('.todoitem-button__content').text()).toMatch('Delete');
     })
 
     afterEach(() => {

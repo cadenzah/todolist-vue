@@ -12,6 +12,11 @@
           {{ item.desc }}
         </span>
       </div>
+      <div class="todoitem-button__wrapper">
+        <p class="todoitem-button__content">
+          Delete
+        </p>
+      </div>
     </div>
   </div>
 </template>
