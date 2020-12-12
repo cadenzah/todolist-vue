@@ -4,8 +4,14 @@
     :class="{ done: item.status === 'DONE' ? true : false }"
   >
     <div class="todoitem-checkbox__wrapper">
-      <label>
-        <input />
+      <label :for="item.id">
+        <input
+          :id="item.id"
+          type="checkbox"
+          :value="item.id"
+          v-model="item.id"
+          @change="handleUpdateTodo(item.id)"
+        />
         <span />
       </label>
     </div>
@@ -16,6 +22,7 @@
     </div>
     <div
       class="todoitem-button__wrapper caution"
+      @click="handleDeleteTodo(item.id)"
     >
       <p>
         Delete
