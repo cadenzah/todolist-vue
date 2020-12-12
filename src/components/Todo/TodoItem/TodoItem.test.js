@@ -58,8 +58,6 @@ describe(`TodoItem.vue`, () => {
     it(`할일 내용이 표시되는 <p>`, () => {
       // <div class="todoitem-content__wrapper"> 내에 존재
       expect(wrapper.find('div.todoitem-content__wrapper > span').exists()).toBe(true);
-      // "todoitem-content__content" class를 가진다
-      expect(wrapper.find('span.todoitem-content__content').exists()).toBe(true);
     });
 
     afterEach(() => {
@@ -80,8 +78,6 @@ describe(`TodoItem.vue`, () => {
     it(`버튼 텍스트가 표시되는 <p>`, () => {
       // <div class="todoitem-content__wrapper"> 내에 존재
       expect(wrapper.find('div.todoitem-button__wrapper > p').exists()).toBe(true);
-      // "todoitem-content__content" class를 가진다
-      expect(wrapper.find('p.todoitem-button__content').exists()).toBe(true);
     });
 
     afterEach(() => {
