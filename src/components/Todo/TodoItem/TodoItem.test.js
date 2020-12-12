@@ -67,6 +67,28 @@ describe(`TodoItem.vue`, () => {
     });
   })
 
+  describe(`# Button`, () => {
+    beforeEach(() => {
+      wrapper = mount(TodoItem);
+    });
+
+    it(`Wrapper 역할의 <div>`, () => {
+      // 컨텐츠 영역을 감싸는 <div>가 존재하며, "todoitem-button__wrapper" class를 가진다
+      expect(wrapper.find('div.todoitem-button__wrapper').exists()).toBe(true);
+    });
+
+    it(`버튼이 표시되는 <button>`, () => {
+      // <div class="todoitem-content__wrapper"> 내에 존재
+      expect(wrapper.find('div.todoitem-button__wrapper > button').exists()).toBe(true);
+      // "todoitem-content__content" class를 가진다
+      expect(wrapper.find('button.todoitem-button__content').exists()).toBe(true);
+    });
+
+    afterEach(() => {
+      wrapper = null;
+    });
+  });
+
   describe(`# Vue Component`, () => {
     beforeEach(() => {
       wrapper = mount(TodoItem, {
@@ -81,13 +103,12 @@ describe(`TodoItem.vue`, () => {
     it(`props를 데이터로 활용`, () => {
       // item props로 전달된 데이터를 활용하여 컨텐츠를 표시한다
       expect(wrapper.find('.todoitem-content__content').text()).toMatch('운동하기');
-
     })
 
     afterEach(() => {
       wrapper = null;
     });
-  })
+  });
 
   describe(`# Integrated`, () => {
     it(`최상위 Wrapper <div>`, () => {
