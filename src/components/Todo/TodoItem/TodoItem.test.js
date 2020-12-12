@@ -93,17 +93,17 @@ describe(`TodoItem.vue`, () => {
       expect(wrapper.find('div.todoitem-button__wrapper > p').exists()).toBe(true);
     });
 
-    it(`props를 데이터로 활용하여 버튼 텍스트 표시`, () => {
-      expect(wrapper.find('.todoitem-button__content').text()).toMatch('Delete');
+    it(`children으로 전달된 텍스트를 활용하여 버튼 텍스트 표시`, () => {
+      expect(wrapper.find('.todoitem-button__wrapper > p').text()).toMatch('Delete');
     });
 
-    it(`prop에 따라 다른 class 추가`, () => {
-      wrapper = mount(TodoItem, {
-        propsData: {
-          item: items[0]
-        }
-      })
-    });
+    // it(`prop에 따라 다른 class 추가`, () => {
+    //   wrapper = mount(TodoItem, {
+    //     propsData: {
+    //       item: items[0]
+    //     }
+    //   });
+    // });
 
     afterEach(() => {
       wrapper = null;
@@ -118,17 +118,25 @@ describe(`TodoItem.vue`, () => {
     });
 
     it(`props에 따라 다른 class 추가`, () => {
+      // props.item.status !== 'DONE' 이면
+      // 최상위 <div>는 기본 class만 가진다
+      wrapper = mount(TodoItem, {
+        propsData: {
+          item: items[0], // item.status === 'PENDING'
+        },
+      });
+      const div_wrapper_pending = wrapper.find('div.todoitem__container');
+      expect(div_wrapper_pending.classes()).not.toContain('done');
+
       // props.item.status === 'DONE' 이면
       // 최상위 <div>에 'done' class 추가
       wrapper = mount(TodoItem, {
         propsData: {
-          item: items[0], // item.status === 'DONE'
-          handleUpdateTodo: () => {},
-          handleDeleteTodo: () => {},
+          item: items[1], // item.status === 'DONE'
         },
       });
-      const div_wrapper = wrapper.find('div.todoitem__container');
-      expect(div_wrapper.classes()).toContain('done');
+      const div_wrapper_done = wrapper.find('div.todoitem__container');
+      expect(div_wrapper_done.classes()).toContain('done');
       
     });
   });

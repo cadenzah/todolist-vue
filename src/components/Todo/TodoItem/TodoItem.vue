@@ -1,5 +1,8 @@
 <template>
-  <div class="todoitem__container">
+  <div
+    class="todoitem__container"
+    :class="{ done: item.status === 'DONE' ? true : false }"
+  >
     <div class="todoitem-checkbox__wrapper">
       <label>
         <input />
@@ -11,7 +14,9 @@
         {{ item.desc }}
       </span>
     </div>
-    <div class="todoitem-button__wrapper">
+    <div
+      class="todoitem-button__wrapper caution"
+    >
       <p>
         Delete
       </p>
@@ -33,7 +38,12 @@ export default {
     handleDeleteTodo: {
       type: Function,
     }
-  }
+  },
+  computed: {
+    isTodoDone: function() {
+      return this.item.status === 'DONE' ? true : false;
+    },
+  },
 }
 </script>
 
