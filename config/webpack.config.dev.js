@@ -38,6 +38,19 @@ module.exports = (env) => {
             },
           ],
         },
+        {
+          test: /\.scss$/,
+          use: [
+            'vue-style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                esModule: false,
+              },
+            },
+            'sass-loader',
+          ],
+        },
       ],
     },
     devServer: {
