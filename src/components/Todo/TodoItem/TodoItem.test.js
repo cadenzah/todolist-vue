@@ -40,6 +40,24 @@ describe(`TodoItem.vue`, () => {
       expect(wrapper.find('label > span').exists()).toBe(true);
     });
 
+    it(`<input>이 필요한 Attribute를 가진다`, () => {
+      wrapper = mount(TodoItem, {
+        propsData: {
+          item: items[0],
+          handleUpdateTodo: function(e) { alert(e) },
+        },
+      });
+      let input = wrapper.find('.todoitem-checkbox__wrapper input')
+      let attributes = input.attributes();
+
+      // input은 props로부터 string id를 부여받아야 한다
+      expect(typeof attributes.id).toBe('string');
+      // type은 "checkbox" 이어야 한다
+      expect(attributes.type).toBe('checkbox');
+      // value로 id를 가져야 한다 (이후 이벤트 리스너 연동을 위함)
+      expect(attributes.value).toBe(attributes.id);
+    });
+
     afterEach(() => {
       wrapper = null;
     });
@@ -137,7 +155,6 @@ describe(`TodoItem.vue`, () => {
       });
       const div_wrapper_done = wrapper.find('div.todoitem__container');
       expect(div_wrapper_done.classes()).toContain('done');
-      
     });
   });
 });
