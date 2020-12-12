@@ -1,3 +1,1 @@
-module.exports = {
-
-};
+import 'regenerator-runtime';
