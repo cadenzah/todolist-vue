@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <div class="todoitem__container">
-      <div class="todoitem-checkbox__wrapper">
-        <label>
-          <input />
-          <span />
-        </label>
-      </div>
-      <div class="todoitem-content__wrapper">
-        <span class="todoitem-content__content">
-          {{ item.desc }}
-        </span>
-      </div>
-      <div class="todoitem-button__wrapper">
-        <p class="todoitem-button__content">
-          Delete
-        </p>
-      </div>
+  <div class="todoitem__container">
+    <div class="todoitem-checkbox__wrapper">
+      <label>
+        <input />
+        <span />
+      </label>
+    </div>
+    <div class="todoitem-content__wrapper">
+      <span>
+        {{ item.desc }}
+      </span>
+    </div>
+    <div class="todoitem-button__wrapper">
+      <p>
+        Delete
+      </p>
     </div>
   </div>
 </template>
@@ -39,6 +37,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

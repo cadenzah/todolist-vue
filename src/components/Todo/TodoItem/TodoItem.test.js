@@ -19,7 +19,7 @@ const items = [
  
 
 describe(`TodoItem.vue`, () => {
-  describe(`# 체크박스`, () => {
+  describe(`# Checkbox`, () => {
     beforeEach(() => {
       wrapper = mount(TodoItem);
     });
@@ -60,6 +60,19 @@ describe(`TodoItem.vue`, () => {
       expect(wrapper.find('div.todoitem-content__wrapper > span').exists()).toBe(true);
     });
 
+    it(`props를 활용하여 <p>에 컨텐츠 주입`, () => {
+      // item props로 전달된 데이터를 활용하여 컨텐츠를 표시한다
+      wrapper = mount(TodoItem, {
+        propsData: {
+          item: items[0], // item.status === 'DONE'
+          handleUpdateTodo: () => {},
+          handleDeleteTodo: () => {},
+        },
+      });
+
+      expect(wrapper.find('.todoitem-content__wrapper > span').text()).toMatch('운동하기');
+    });
+
     afterEach(() => {
       wrapper = null;
     });
@@ -80,28 +93,17 @@ describe(`TodoItem.vue`, () => {
       expect(wrapper.find('div.todoitem-button__wrapper > p').exists()).toBe(true);
     });
 
-    afterEach(() => {
-      wrapper = null;
+    it(`props를 데이터로 활용하여 버튼 텍스트 표시`, () => {
+      expect(wrapper.find('.todoitem-button__content').text()).toMatch('Delete');
     });
-  });
 
-  describe(`# Vue Component`, () => {
-    beforeEach(() => {
+    it(`prop에 따라 다른 class 추가`, () => {
       wrapper = mount(TodoItem, {
         propsData: {
-          item: items[0],
-          handleUpdateTodo: () => {},
-          handleDeleteTodo: () => {},
-        },
-      });
+          item: items[0]
+        }
+      })
     });
-
-    it(`props를 데이터로 활용`, () => {
-      // item props로 전달된 데이터를 활용하여 컨텐츠를 표시한다
-      expect(wrapper.find('.todoitem-content__content').text()).toMatch('운동하기');
-
-      expect(wrapper.find('.todoitem-button__content').text()).toMatch('Delete');
-    })
 
     afterEach(() => {
       wrapper = null;
@@ -113,6 +115,21 @@ describe(`TodoItem.vue`, () => {
       wrapper = mount(TodoItem);
       // 모든 컴포넌트를 감싸는 <div>가 존재하며, "todoitem__container" class를 가진다
       expect(wrapper.find('div.todoitem__container').exists()).toBe(true);
+    });
+
+    it(`props에 따라 다른 class 추가`, () => {
+      // props.item.status === 'DONE' 이면
+      // 최상위 <div>에 'done' class 추가
+      wrapper = mount(TodoItem, {
+        propsData: {
+          item: items[0], // item.status === 'DONE'
+          handleUpdateTodo: () => {},
+          handleDeleteTodo: () => {},
+        },
+      });
+      const div_wrapper = wrapper.find('div.todoitem__container');
+      expect(div_wrapper.classes()).toContain('done');
+      
     });
   });
 });
