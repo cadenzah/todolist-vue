@@ -2,7 +2,7 @@ import TodoItem from '../TodoItem';
 import { action } from '@storybook/addon-actions';
 
 // dummy data
-const items = [
+export const itemData = [
   {
     id: Date.now(),
     status: 'PENDING',
@@ -14,16 +14,17 @@ const items = [
     desc: '휴식',
   },
 ];
+
+// dummy event listeners
+export const actionsData = {
+  handleDeleteTodo: action('handleDeleteTodo'),
+  handleUpdateTodo: action('handleUpdateTodo'),
+};
  
 export default {
   title: 'TodoItem',
   component: TodoItem,
   excludeStories: /.*Data$/, // otherwise addon-actions generates error
-};
-
-export const actionsData = {
-  onPinTask: action('pin-task'),
-  onArchiveTask: action('archive-task'),
 };
 
 const Template = (args, { argTypes }) => ({
@@ -38,10 +39,12 @@ const Template = (args, { argTypes }) => ({
 
 export const Pending = Template.bind({});
 Pending.args = {
-  item: items[0],
+  item: itemData[0],
+  ...actionsData,
 }
 
 export const Done = Template.bind({});
 Done.args = {
-  item: items[1],
+  item: itemData[1],
+  ...actionsData,
 }

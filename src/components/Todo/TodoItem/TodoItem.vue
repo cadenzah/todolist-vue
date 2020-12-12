@@ -9,7 +9,7 @@
           :id="item.id"
           type="checkbox"
           :value="item.id"
-          v-model="item.id"
+          :checked="isTodoDone"
           @change="handleUpdateTodo(item.id)"
         />
         <span />
