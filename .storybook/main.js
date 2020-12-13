@@ -4,6 +4,7 @@ module.exports = {
   stories: ['../src/**/*.stories.js'],
   addons: [
     '@storybook/addon-actions',
+    '@storybook/addon-viewport',
   ],
   webpackFinal: async (config, { configType }) => {
     // config === webpack config object
