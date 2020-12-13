@@ -1,64 +1,74 @@
 import { mount } from '@vue/test-utils';
 import sinon from 'sinon';
 
-import TodoItem from './TodoButton.vue';
+import TodoButton from './TodoButton.vue';
 
-let wrapper = null;
+let button__primary = null,
+    button__caution = null;
 
 // dummy data
 const items = [
   {
-    id: Date.now(),
-    status: 'PENDING',
-    desc: '운동하기',
+    buttonType: 'primary',
+    handleDeleteTodo: function() { },
   },
   {
-    id: Date.now() + 30,
-    status: 'DONE',
-    desc: '휴식',
+    buttonType: 'caution',
+    handleDeleteTodo: function() { },
   },
 ];
 
-describe(`# TodoButton`, () => {
+describe(`<TodoButton />`, () => {
   beforeEach(() => {
-    wrapper = mount(TodoItem);
+    button__primary = mount(TodoButton, {
+      propsData: {
+        ...items[0],
+      },
+    });
+    button__caution = mount(TodoButton, {
+      propsData: {
+        ...items[1],
+      },
+    });
   });
 
   it(`Wrapper 역할의 <div>`, () => {
     // 컨텐츠 영역을 감싸는 <div>가 존재하며, "todoitem-button__wrapper" class를 가진다
-    expect(wrapper.find('div.todoitem-button__wrapper').exists()).toBe(true);
+    expect(button__caution.find('div.todobutton__wrapper').exists()).toBe(true);
   });
 
   it(`버튼 텍스트가 표시되는 <p>`, () => {
     // <div class="todoitem-content__wrapper"> 내에 존재
-    expect(wrapper.find('div.todoitem-button__wrapper > p').exists()).toBe(true);
+    expect(button__caution.find('div.todoitem__wrapper > p').exists()).toBe(true);
   });
 
   it(`children으로 전달된 텍스트를 활용하여 버튼 텍스트 표시`, () => {
-    expect(wrapper.find('.todoitem-button__wrapper > p').text()).toMatch('Delete');
+    expect(button__caution.find('.todoitem__wrapper > p').text()).toMatch('Delete');
   });
 
   it(`클릭 이벤트 핸들러 사용`, async () => {
     const spy = sinon.spy();
-    wrapper = mount(TodoItem, {
+    button__caution = mount(TodoButton, {
       propsData: {
-        item: items[0],
-        handleDeleteTodo: spy,
+        ...items,
+        handleDeleteTodo: (event) => spy(),
       },
     });
 
-    // 클릭 이벤트가 발생하였을 때, item.id를 전달한다
-    await wrapper.find('div.todoitem-button__wrapper').trigger('click')
-    expect(spy.calledWith(items[0].id)).toBeTruthy();
+    // 클릭 이벤트가 발생하였을 때, props.handleDeleteTodo 가 실행된다
+    await button__caution.find('div.todoitem__wrapper').trigger('click')
+    expect(spy.called).toBeTruthy();
   });
 
-  // it(`prop에 따라 다른 class 추가`, () => {
-  //   wrapper = mount(TodoItem, {
-  //     propsData: {
-  //       item: items[0]
-  //     }
-  //   });
-  // });
+  it(`prop에 따라 다른 class 추가`, () => {
+    // props.buttonType 으로 판단
+    // (1) 'primary' - primary class 추가
+    // (2) 'caution' - caution class 추가
+    const classes__primary = button__primary.find('div.todobutton__wrapper').classes();
+    const classes__caution = button__caution.find('div.todobutton__wrapper').classes();
+    expect(classes__primary).toContain('primary');
+    expect(classes__caution).toContain('caution');
+  });
 
   afterEach(() => {
     wrapper = null;
