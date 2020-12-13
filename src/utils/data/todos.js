@@ -9,7 +9,7 @@ const todos = [
     id: Date.now() + 30,
     status: 'DONE',
     desc: '휴식',
-    date: Date.now(),
+    date: Date.now() + 1,
   },
 ];
 
