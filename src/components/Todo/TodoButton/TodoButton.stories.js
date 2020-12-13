@@ -1,49 +1,46 @@
 import { action } from '@storybook/addon-actions';
-import TodoItem from '../TodoItem';
+import TodoButton from '../TodoButton';
 
 // dummy data
 export const itemData = [
   {
-    id: Date.now(),
-    status: 'PENDING',
-    desc: '운동하기',
+    buttonType: 'caution',
+    handleDeleteTodo: function() { },
   },
   {
-    id: Date.now() + 30,
-    status: 'DONE',
-    desc: '휴식',
+    buttonType: 'primary',
+    handleDeleteTodo: function() { },
   },
 ];
 
 // dummy event listeners
 export const actionsData = {
   handleDeleteTodo: action('handleDeleteTodo'),
-  handleUpdateTodo: action('handleUpdateTodo'),
 };
  
 export default {
-  title: 'TodoItem',
-  component: TodoItem,
+  title: 'TodoButton',
+  component: TodoButton,
   excludeStories: /.*Data$/, // otherwise addon-actions generates error
 };
 
 const Template = (args, { argTypes }) => ({
-  components: { TodoItem },
+  components: { TodoButton },
   props: Object.keys(argTypes),
   methods: {},
   template:
-    `<TodoItem
+    `<TodoButton
       v-bind="$props"
     />`,
 });
 
-export const Pending = Template.bind({});
+export const Primary = Template.bind({});
 Pending.args = {
   item: itemData[0],
   ...actionsData,
 }
 
-export const Done = Template.bind({});
+export const Caution = Template.bind({});
 Done.args = {
   item: itemData[1],
   ...actionsData,
