@@ -1,7 +1,7 @@
 <template>
   <div
     class="todoitem__container"
-    :class="{ done: item.status === 'DONE' ? true : false }"
+    :class="{ done: isTodoDone }"
   >
     <div class="todoitem-checkbox__wrapper">
       <label :for="item.id">

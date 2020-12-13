@@ -39,24 +39,32 @@ describe(`<TodoButton />`, () => {
 
   it(`버튼 텍스트가 표시되는 <p>`, () => {
     // <div class="todoitem-content__wrapper"> 내에 존재
-    expect(button__caution.find('div.todoitem__wrapper > p').exists()).toBe(true);
+    expect(button__caution.find('div.todobutton__wrapper > p').exists()).toBe(true);
   });
 
   it(`children으로 전달된 텍스트를 활용하여 버튼 텍스트 표시`, () => {
-    expect(button__caution.find('.todoitem__wrapper > p').text()).toMatch('Delete');
+    button__caution = mount(TodoButton, {
+      propsData: {
+        ...items[0],
+      },
+      slots: {
+        default: 'Delete'
+      },
+    })
+    expect(button__caution.find('.todobutton__wrapper > p').text()).toMatch('Delete');
   });
 
   it(`클릭 이벤트 핸들러 사용`, async () => {
     const spy = sinon.spy();
     button__caution = mount(TodoButton, {
       propsData: {
-        ...items,
-        handleDeleteTodo: (event) => spy(),
+        ...items[0],
+        handleDeleteTodo: spy,
       },
     });
 
     // 클릭 이벤트가 발생하였을 때, props.handleDeleteTodo 가 실행된다
-    await button__caution.find('div.todoitem__wrapper').trigger('click')
+    await button__caution.find('div.todobutton__wrapper').trigger('click')
     expect(spy.called).toBeTruthy();
   });
 
@@ -67,10 +75,13 @@ describe(`<TodoButton />`, () => {
     const classes__primary = button__primary.find('div.todobutton__wrapper').classes();
     const classes__caution = button__caution.find('div.todobutton__wrapper').classes();
     expect(classes__primary).toContain('primary');
+    expect(classes__primary).not.toContain('caution');
     expect(classes__caution).toContain('caution');
+    expect(classes__caution).not.toContain('primary');
   });
 
   afterEach(() => {
-    wrapper = null;
+    button__primary = null;
+    button__caution = null;
   });
 });
