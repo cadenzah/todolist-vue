@@ -24,7 +24,7 @@ describe(`<TodoList />`, () => {
   
     it(`Wrapper 역할의 <div>`, () => {
       // 컨텐츠 영역을 감싸는 <div>가 존재하며, "todolist__wrapper" class를 가진다
-      expect(wrapper.find('div.todolist__wrapper').exists()).toBe(true);
+      expect(wrapper.find('div.todolist__wrapper').exists()).toBeTruthy();
     });
   
     it(`할일 개수만큼 할일 요소들이 생성된다`, () => {
@@ -96,7 +96,7 @@ describe(`<TodoList />`, () => {
           isLoading: false,
         },
       });
-      expect(wrapper.find('div.todolist__wrapper').exists()).toBeFalsy();
+      expect(wrapper.find('div.todolist__wrapper').exists()).toBeTruthy();
     });
   
     afterEach(() => {
@@ -121,7 +121,7 @@ describe(`<TodoList />`, () => {
 
     it(`Wrapper 역할의 <div>`, () => {
       // 영역을 감싸는 <div>가 존재하며, "todolist-message__wrapper" class를 가진다
-      expect(wrapper.find('div.todolist-message__wrapper').exists()).toBe(true);
+      expect(wrapper.find('div.todolist-message__wrapper').exists()).toBeTruthy();
     });
     
     it(`할일이 없다면, 안내 문구 표시`, () => {
@@ -163,9 +163,8 @@ describe(`<TodoList />`, () => {
     });
 
     it(`최상위 Container <div>`, () => {
-      wrapper = mount(TodoItem);
       // 모든 컴포넌트를 감싸는 <div>가 존재하며, "todoitem__container" class를 가진다
-      expect(wrapper.find('div.todolist__container').exists()).toBe(true);
+      expect(wrapper.find('div.todolist__container').exists()).toBeTruthy();
     });
 
     afterEach(() => {
