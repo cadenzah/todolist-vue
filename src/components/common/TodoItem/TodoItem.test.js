@@ -91,7 +91,11 @@ describe(`<TodoItem />`, () => {
   })
 
   describe(`# Integrated`, () => {
-    it(`최상위 Wrapper <div>`, () => {
+    beforeEach(() => {
+      wrapper = mount(TodoItem);
+    });
+    
+    it(`최상위 Container <div>`, () => {
       wrapper = mount(TodoItem);
       // 모든 컴포넌트를 감싸는 <div>가 존재하며, "todoitem__container" class를 가진다
       expect(wrapper.find('div.todoitem__container').exists()).toBe(true);
@@ -117,6 +121,10 @@ describe(`<TodoItem />`, () => {
       });
       const div_wrapper_done = wrapper.find('div.todoitem__container');
       expect(div_wrapper_done.classes()).toContain('done');
+    });
+
+    afterEach(() => {
+      wrapper = null;
     });
   });
 });
