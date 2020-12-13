@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import TodoItem from '../TodoItem';
+import TodoItem from '.';
 
 // dummy data
 export const itemData = [
