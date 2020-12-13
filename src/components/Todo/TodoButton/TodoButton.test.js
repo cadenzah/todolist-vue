@@ -9,11 +9,11 @@ let button__primary = null,
 // dummy data
 const items = [
   {
-    buttonType: 'primary',
+    primary: true,
     handleDeleteTodo: function() { },
   },
   {
-    buttonType: 'caution',
+    caution: true,
     handleDeleteTodo: function() { },
   },
 ];

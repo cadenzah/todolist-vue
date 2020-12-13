@@ -2,8 +2,8 @@
   <div
     class="todobutton__wrapper"
     :class="{
-      primary: isTypePrimary,
-      caution: isTypeCaution,
+      primary: primary,
+      caution: caution,
     }"
     @click="handleDeleteTodo()"
   >
@@ -17,20 +17,16 @@
 export default {
   name: 'TodoButton',
   props: {
-    buttonType: {
-      type: String,
-      default: () => (''),
+    primary: {
+      type: Boolean,
+      default: () => false,
+    },
+    caution: {
+      type: Boolean,
+      default: () => false,
     },
     handleDeleteTodo: {
       type: Function,
-    },
-  },
-  computed: {
-    isTypePrimary: function() {
-      return this.buttonType === 'primary' ? true : false;
-    },
-    isTypeCaution: function() {
-      return this.buttonType === 'caution' ? true : false;
     },
   },
 }
