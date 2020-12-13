@@ -20,7 +20,7 @@ const items = [
 ];
  
 
-describe(`TodoItem.vue`, () => {
+describe(`<TodoItem />`, () => {
   describe(`# Checkbox`, () => {
     beforeEach(() => {
       wrapper = mount(TodoItem);
@@ -61,7 +61,7 @@ describe(`TodoItem.vue`, () => {
       expect(attributes.value).toBe(attributes.id);
       // 클릭 이벤트가 발생하였을 때, item.id를 전달한다
       await wrapper.find('div.todoitem-checkbox__wrapper label').trigger('click');
-      expect(spy.calledWith(items[0].id)).toBeTruthy();
+      expect(spy.called).toBeTruthy();
     });
 
     afterEach(() => {

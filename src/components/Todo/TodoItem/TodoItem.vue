@@ -10,7 +10,7 @@
           type="checkbox"
           :value="item.id"
           :checked="isTodoDone"
-          @change="handleUpdateTodo(item.id)"
+          @change="handleUpdateTodo"
         />
         <span />
       </label>
@@ -22,7 +22,7 @@
     </div>
     <div
       class="todoitem-button__wrapper caution"
-      @click="handleDeleteTodo(item.id)"
+      @click="handleDeleteTodo"
     >
       <p>
         Delete
