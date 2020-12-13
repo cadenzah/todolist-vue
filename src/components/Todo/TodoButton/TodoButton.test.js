@@ -24,10 +24,16 @@ describe(`<TodoButton />`, () => {
       propsData: {
         ...items[0],
       },
+      slots: {
+        default: 'Confirm'
+      },
     });
     button__caution = mount(TodoButton, {
       propsData: {
         ...items[1],
+      },
+      slots: {
+        default: 'Delete'
       },
     });
   });
@@ -43,14 +49,6 @@ describe(`<TodoButton />`, () => {
   });
 
   it(`children으로 전달된 텍스트를 활용하여 버튼 텍스트 표시`, () => {
-    button__caution = mount(TodoButton, {
-      propsData: {
-        ...items[0],
-      },
-      slots: {
-        default: 'Delete'
-      },
-    })
     expect(button__caution.find('.todobutton__wrapper > p').text()).toMatch('Delete');
   });
 
