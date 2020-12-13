@@ -34,18 +34,18 @@ describe(`<TodoList />`, () => {
         },
       });
       const listLong = mount(TodoList, {
-        propsdata: {
+        propsData: {
           items: todos_long,
         },
       });
   
       // 2개 할일이 생성된다
-      const countTodosShort = listShort.find('div.todolist__wrapper').findAllComponents(TodoItem);
-      expect(countTodosShort.length).toBe(2);
+      const countTodosShort = listShort.findAllComponents(TodoItem).length;
+      expect(countTodosShort).toBe(2);
   
       // 5개 할일이 생성된다
-      const countTodosLong = listLong.find('div.todolist__wrapper').findAllComponents(TodoItem);
-      expect(countTodosLong.length).toBe(5);
+      const countTodosLong = listLong.findAllComponents(TodoItem).length;
+      expect(countTodosLong).toBe(5);
     });
   
     it(`목록 내 할일들의 올바른 정렬`, ()   => {
@@ -56,7 +56,7 @@ describe(`<TodoList />`, () => {
         },
       });
       const listLong = mount(TodoList, {
-        propsdata: {
+        propsData: {
           // 'PENDING' 3개, 'DONE' 2개
           items: todos_long,
         },
@@ -66,14 +66,14 @@ describe(`<TodoList />`, () => {
       // 정렬 기준 (2) 추가 시간 순
       
       // 2개 할일이 생성된다 - 첫번째 할일은 'PENDING', 두번째 할일은 'DONE'
-      const countTodosShort = listShort.find('div.todolist__wrapper').findAllComponents(TodoItem);
-      expect(countTodosShort[0].classes()).not.toContain('done');
-      expect(countTodosShort[1].classes()).toContain('done');
+      const todosShort = listShort.findAllComponents(TodoItem).wrappers;
+      expect(todosShort[0].classes()).not.toContain('done');
+      expect(todosShort[1].classes()).toContain('done');
   
       // 5개 할일이 생성된다 - - 세번째 할일은 'PENDING', 네번째 할일은 'DONE'
-      const countTodosLong = listLong.find('div.todolist__wrapper').findAllComponents(TodoItem);
-      expect(countTodosLong[2].classes()).not.toContain('done');
-      expect(countTodosLong[3].classes()).toContain('done');
+      const todosLong = listLong.findAllComponents(TodoItem).wrappers;
+      expect(todosLong[2].classes()).not.toContain('done');
+      expect(todosLong[3].classes()).toContain('done');
     });
 
     // 데이터 로딩 중일 때 로딩 UI 표시는 한 단계 부모 컴포넌트 단으로 옮기자
@@ -134,7 +134,7 @@ describe(`<TodoList />`, () => {
   
       // 할일의 길이가 0개이고 로딩 완료 상태일 때,
       // 할일 목록(<div class="todolist__wrapper")은 출력되지 않는다
-      const countTodosShort = wrapper.find('div.todolist__wrapper').findAllComponents(TodoItem);
+      const countTodosShort = wrapper.findAllComponents(TodoItem);
       expect(countTodosShort.length).toBe(0);  
 
       // 'Add a new task to do.' 문구가 출력된다
