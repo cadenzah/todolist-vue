@@ -4,11 +4,11 @@ import TodoButton from '../TodoButton';
 // dummy data
 export const itemData = [
   {
-    buttonType: 'caution',
+    primary: true,
     handleDeleteTodo: function() { },
   },
   {
-    buttonType: 'primary',
+    caution: true,
     handleDeleteTodo: function() { },
   },
 ];
@@ -31,17 +31,20 @@ const Template = (args, { argTypes }) => ({
   template:
     `<TodoButton
       v-bind="$props"
-    />`,
+     >
+      확인
+     </TodoButton>
+    `,
 });
 
 export const Primary = Template.bind({});
-Pending.args = {
-  item: itemData[0],
+Primary.args = {
+  ...itemData[0],
   ...actionsData,
 }
 
 export const Caution = Template.bind({});
-Done.args = {
-  item: itemData[1],
+Caution.args = {
+  ...itemData[1],
   ...actionsData,
 }
