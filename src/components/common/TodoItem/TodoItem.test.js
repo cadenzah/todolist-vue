@@ -3,22 +3,10 @@ import sinon from 'sinon';
 
 import TodoItem from './TodoItem.vue';
 
-let wrapper = null;
-
 // dummy data
-const items = [
-  {
-    id: Date.now(),
-    status: 'PENDING',
-    desc: '운동하기',
-  },
-  {
-    id: Date.now() + 30,
-    status: 'DONE',
-    desc: '휴식',
-  },
-];
- 
+import { todos } from '../../../utils/data';
+
+let wrapper = null;
 
 describe(`<TodoItem />`, () => {
   describe(`# Checkbox`, () => {
@@ -46,7 +34,7 @@ describe(`<TodoItem />`, () => {
       const spy = sinon.spy();
       wrapper = mount(TodoItem, {
         propsData: {
-          item: items[0],
+          item: todos[0],
           handleUpdateTodo: spy,
         },
       });
@@ -88,7 +76,7 @@ describe(`<TodoItem />`, () => {
       // item props로 전달된 데이터를 활용하여 컨텐츠를 표시한다
       wrapper = mount(TodoItem, {
         propsData: {
-          item: items[0], // item.status === 'DONE'
+          item: todos[0], // item.status === 'DONE'
           handleUpdateTodo: () => {},
           handleDeleteTodo: () => {},
         },
@@ -114,7 +102,7 @@ describe(`<TodoItem />`, () => {
       // 최상위 <div>는 기본 class만 가진다
       wrapper = mount(TodoItem, {
         propsData: {
-          item: items[0], // item.status === 'PENDING'
+          item: todos[0], // item.status === 'PENDING'
         },
       });
       const div_wrapper_pending = wrapper.find('div.todoitem__container');
@@ -124,7 +112,7 @@ describe(`<TodoItem />`, () => {
       // 최상위 <div>에 'done' class 추가
       wrapper = mount(TodoItem, {
         propsData: {
-          item: items[1], // item.status === 'DONE'
+          item: todos[1], // item.status === 'DONE'
         },
       });
       const div_wrapper_done = wrapper.find('div.todoitem__container');
