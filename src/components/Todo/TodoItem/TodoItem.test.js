@@ -102,18 +102,6 @@ describe(`<TodoItem />`, () => {
     });
   })
 
-  describe(`# Button`, () => {
-    beforeEach(() => {
-      wrapper = mount(TodoItem);
-    });
-
-    // <TodoButton />으로 대체한 뒤 수정
-
-    afterEach(() => {
-      wrapper = null;
-    });
-  });
-
   describe(`# Integrated`, () => {
     it(`최상위 Wrapper <div>`, () => {
       wrapper = mount(TodoItem);

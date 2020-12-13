@@ -20,20 +20,23 @@
         {{ item.desc }}
       </span>
     </div>
-    <div
-      class="todoitem-button__wrapper caution"
-      @click="handleDeleteTodo()"
+    <TodoButton
+      caution
+      :handleDeleteTodo="handleDeleteTodo"
     >
-      <p>
-        Delete
-      </p>
-    </div>
+      Delete
+    </TodoButton>
   </div>
 </template>
 
 <script>
+import TodoButton from '../TodoButton';
+
 export default {
   name: "TodoItem",
+  components: {
+    TodoButton,
+  },
   props: {
     item: {
       type: Object,
