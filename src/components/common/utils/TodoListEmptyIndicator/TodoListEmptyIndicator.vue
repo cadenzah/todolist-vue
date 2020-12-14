@@ -13,5 +13,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../scss/_variables.scss";
 
+.todolist-empty-indicator__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > p {
+    font-size: $fontsize-todoitem;
+    color: $color-placeholder;
+  }
+}
 </style>

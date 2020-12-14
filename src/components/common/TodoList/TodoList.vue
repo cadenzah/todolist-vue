@@ -1,6 +1,9 @@
 <template>
   <div class="todolist__container">
-    <div class="todolist__wrapper" v-if="!isLoading && !isListEmpty">
+    <div
+      class="todolist__wrapper"
+      v-if="!isLoading && !isListEmpty"
+    >
       <TodoItem
         v-for="item in sortedItems"
         :key="item.id"
@@ -10,21 +13,24 @@
       />
     </div>
     <!-- With empty Todo List, shows guide message -->
-    <div class="todolist-message__wrapper" v-if="isListEmpty">
-      <p>
-        Add a new task to do.
-      </p>
-    </div>
+    <TodoListEmptyIndicator
+      :items="items"
+      v-if="isListEmpty"
+    >
+      Add a new task to do.
+    </TodoListEmptyIndicator>
   </div>
 </template>
 
 <script>
 import TodoItem from '../TodoItem';
+import TodoListEmptyIndicator from '../utils/TodoListEmptyIndicator';
 
 export default {
   name: "TodoList",
   components: {
     TodoItem,
+    TodoListEmptyIndicator,
   },
   props: {
     items: {
@@ -57,16 +63,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../scss/_variables.scss";
 
-.todolist-message__wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  & > p {
-    font-size: $fontsize-todoitem;
-    color: $color-placeholder;
-  }
-}
 </style>
