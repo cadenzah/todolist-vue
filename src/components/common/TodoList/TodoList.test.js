@@ -113,39 +113,6 @@ describe(`<TodoList />`, () => {
     });
   });
 
-  describe(`# 할 일 목록이 비었을 때 안내 문구`, () => {
-    beforeEach(() => {
-      wrapper = mount(TodoList, {
-        propsData: {
-          items: [],
-          isLoading: false,
-          handleUpdateTodo: () => { },
-          handleDeleteTodo: () => { },
-        },
-      });
-    });
-
-    it(`Wrapper 역할의 <div>`, () => {
-      // 영역을 감싸는 <div>가 존재하며, "todolist-message__wrapper" class를 가진다
-      expect(wrapper.find('div.todolist-message__wrapper').exists()).toBe(true);
-    });
-    
-    it(`할일이 없다면, 안내 문구 표시`, () => {
-      // 할일의 길이가 0개이고 로딩 완료 상태일 때,
-      // 할일 목록(<div class="todolist__wrapper")은 출력되지 않는다
-      const countTodosShort = wrapper.findAllComponents(TodoItem);
-      expect(countTodosShort.length).toBe(0);  
-
-      // 'Add a new task to do.' 문구가 출력된다
-      expect(wrapper.find('div.todolist-message__wrapper > p').text())
-        .toMatch('Add a new task to do.');
-    });
-
-    afterEach(() => {
-      wrapper = null;
-    });
-  });
-
   // 로딩 UI 관련 내용은 별도 컴포넌트로 추가
   // 체크박스 컴포넌트 변형
 
