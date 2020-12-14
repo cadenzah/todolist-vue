@@ -8,7 +8,7 @@
     "test:watch": "npx jest --watchAll --verbose",
     "test:coverage": "npx jest --watchAll --verbose --coverage",
     "dev": "npx webpack-dev-server --config ./config/webpack.config.dev.js --progress --open chrome",
-    "storybook": "npx start-storybook -p 6006"
+    "sb": "npx start-storybook -p 6006"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,11 @@
     "vuejs",
     "vue",
     "javascript",
-    "webpack"
+    "webpack",
+    "tdd",
+    "storybook",
+    "jest",
+    "vue-test-utils"
   ],
   "author": "cadenzah <cadenzah93@gmail.com> (https://github.com/cadenzah)",
   "license": "ISC",
