@@ -41,10 +41,10 @@ export const Primary = Template.bind({});
 Primary.args = {
   ...itemData[0],
   ...actionsData,
-}
+};
 
 export const Caution = Template.bind({});
 Caution.args = {
   ...itemData[1],
   ...actionsData,
-}
+};

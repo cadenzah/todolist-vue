@@ -1,19 +1,8 @@
 import { action } from '@storybook/addon-actions';
-import TodoItem from '.';
+import TodoItem from './TodoItem.vue';
 
 // dummy data
-export const itemData = [
-  {
-    id: Date.now(),
-    status: 'PENDING',
-    desc: '운동하기',
-  },
-  {
-    id: Date.now() + 30,
-    status: 'DONE',
-    desc: '휴식',
-  },
-];
+import { todos as itemData } from '../../../utils/data';
 
 // dummy event listeners
 export const actionsData = {
@@ -41,10 +30,10 @@ export const Pending = Template.bind({});
 Pending.args = {
   item: itemData[0],
   ...actionsData,
-}
+};
 
 export const Done = Template.bind({});
 Done.args = {
   item: itemData[1],
   ...actionsData,
-}
+};
