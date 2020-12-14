@@ -28,6 +28,11 @@ describe(`<TodoList />`, () => {
     });
   
     it(`할일 개수만큼 할일 요소들이 생성된다`, () => {
+      const listEmpty = mount(TodoList, {
+        propsData: {
+          items: [],
+        }
+      })
       const listShort = mount(TodoList, {
         propsData: {
           items: todos,
@@ -38,6 +43,10 @@ describe(`<TodoList />`, () => {
           items: todos_long,
         },
       });
+
+      // 할일이 생성되지 않는다
+      const countTodosEmpty = listEmpty.findAllComponents(TodoItem).length;
+      expect(countTodosEmpty).toBe(0);
   
       // 2개 할일이 생성된다
       const countTodosShort = listShort.findAllComponents(TodoItem).length;
@@ -82,7 +91,7 @@ describe(`<TodoList />`, () => {
       // (1) 데이터 로딩 중인 경우
       wrapper = mount(TodoList, {
         propsData: {
-          items: [],
+          items: todos,
           isLoading: true,
         },
       });
@@ -96,7 +105,7 @@ describe(`<TodoList />`, () => {
           isLoading: false,
         },
       });
-      expect(wrapper.find('div.todolist__wrapper').exists()).toBeTruthy();
+      expect(wrapper.find('div.todolist__wrapper').exists()).toBeFalsy();
     });
   
     afterEach(() => {
@@ -108,37 +117,27 @@ describe(`<TodoList />`, () => {
     beforeEach(() => {
       wrapper = mount(TodoList, {
         propsData: {
-          items: todos, // 2개
+          items: [],
           isLoading: false,
           handleUpdateTodo: () => { },
           handleDeleteTodo: () => { },
         },
-        slots: {
-          default: 'Add a new task to do'
-        }
-      })
+      });
     });
 
     it(`Wrapper 역할의 <div>`, () => {
       // 영역을 감싸는 <div>가 존재하며, "todolist-message__wrapper" class를 가진다
-      expect(wrapper.find('div.todolist-message__wrapper').exists()).toBeTruthy();
+      expect(wrapper.find('div.todolist-message__wrapper').exists()).toBe(true);
     });
     
     it(`할일이 없다면, 안내 문구 표시`, () => {
-      wrapper = mount(TodoList, {
-        propsData: {
-          items: [],
-          isLoading: false,
-        },
-      });
-  
       // 할일의 길이가 0개이고 로딩 완료 상태일 때,
       // 할일 목록(<div class="todolist__wrapper")은 출력되지 않는다
       const countTodosShort = wrapper.findAllComponents(TodoItem);
       expect(countTodosShort.length).toBe(0);  
 
       // 'Add a new task to do.' 문구가 출력된다
-      expect(wrapper.find('div.todolist-message__wrapper').text())
+      expect(wrapper.find('div.todolist-message__wrapper > p').text())
         .toMatch('Add a new task to do.');
     });
 
@@ -170,6 +169,5 @@ describe(`<TodoList />`, () => {
     afterEach(() => {
       wrapper = null;
     });
-  })
-  
+  });
 });

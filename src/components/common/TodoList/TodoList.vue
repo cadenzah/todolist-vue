@@ -1,6 +1,6 @@
 <template>
   <div class="todolist__container">
-    <div class="todolist__wrapper" v-if="!isLoading">
+    <div class="todolist__wrapper" v-if="!isLoading && !isListEmpty">
       <TodoItem
         v-for="item in sortedItems"
         :key="item.id"
@@ -8,6 +8,12 @@
         :handleUpdateTodo="handleUpdateTodo"
         :handleDeleteTodo="handleDeleteTodo"
       />
+    </div>
+    <!-- With empty Todo List, shows guide message -->
+    <div class="todolist-message__wrapper" v-if="isListEmpty">
+      <p>
+        Add a new task to do.
+      </p>
     </div>
   </div>
 </template>
@@ -42,6 +48,9 @@ export default {
         ...this.items.filter(item => item.status !== 'DONE').sort((item1, item2) => item2.date - item2.date),
         ...this.items.filter(item => item.status === 'DONE').sort((item1, item2) => item2.date - item2.date),
       ];
+    },
+    isListEmpty: function() {
+      return this.items.length === 0
     }
   }
 };
