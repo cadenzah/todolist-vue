@@ -20,10 +20,11 @@ const Template = (args, { argTypes }) => ({
   components: { TodoItem },
   props: Object.keys(argTypes),
   methods: {},
-  template:
-    `<TodoItem
+  template: `
+    <TodoItem
       v-bind="$props"
-    />`,
+    />
+  `,
 });
 
 export const Pending = Template.bind({});

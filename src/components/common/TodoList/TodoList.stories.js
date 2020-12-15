@@ -23,10 +23,11 @@ const Template = (args, { argTypes }) => ({
   components: { TodoList },
   props: Object.keys(argTypes),
   methods: {},
-  template:
-    `<TodoList
+  template: `
+    <TodoList
       v-bind="$props"
-    />`,
+    />
+  `,
 });
 
 export const Short = Template.bind({});

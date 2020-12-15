@@ -21,6 +21,15 @@ export const actionsData = {
 export default {
   title: 'TodoButton',
   component: TodoButton,
+  decorators: [
+    () => ({
+      template: `
+        <div style="height: 60px;">
+          <story />
+        </div>
+      `,
+    }),
+  ],
   excludeStories: /.*Data$/, // otherwise addon-actions generates error
 };
 
@@ -28,13 +37,13 @@ const Template = (args, { argTypes }) => ({
   components: { TodoButton },
   props: Object.keys(argTypes),
   methods: {},
-  template:
-    `<TodoButton
+  template: `
+    <TodoButton
       v-bind="$props"
-     >
+    >
       확인
-     </TodoButton>
-    `,
+    </TodoButton>
+  `,
 });
 
 export const Primary = Template.bind({});
