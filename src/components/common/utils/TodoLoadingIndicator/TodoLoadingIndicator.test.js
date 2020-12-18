@@ -21,12 +21,12 @@ describe(`<TodoLoadingIndicator />`, () => {
   
     it(`주어진 길이만큼 항목들이 생성된다`, () => {
       // 3개 할일이 생성된다
-      const itemsCount = wrapper.findAll('div.todo-loading-indicator__container > div').length;
+      const itemsCount = wrapper.findAll('div.todo-loading-indicator__container').length;
       expect(itemsCount).toBe(3);
     });
 
     it(`각 항목에는 Indicator 표현을 위한 요소들이 들어있다`, () => {
-      const item = wrapper.find('div.todo-loading-indicator__container > div');
+      const item = wrapper.find('div.todo-loading-indicator__container');
 
       // Checkbox
       expect(item.find('div.todo-loading-indicator-checkbox__wrapper > label').exists()).toBeTruthy();

@@ -21,7 +21,7 @@ export const Default = Template.bind({});
 Default.args = {
 };
 
-export const Three = Template.bind({});
-Three.args = {
+export const Five = Template.bind({});
+Five.args = {
   lines: 5
 };
