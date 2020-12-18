@@ -6,7 +6,9 @@
     >
       <label>
         <input />
-        <span />
+        <span>
+          {{ item.desc }}
+        </span>
       </label>
     </div>
   </div>
