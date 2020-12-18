@@ -5,7 +5,7 @@ import TodoLoadingIndicator from './TodoLoadingIndicator.vue';
 let wrapper = null;
 
 describe(`<TodoLoadingIndicator />`, () => {
-  describe(`# 할 일 목록`, () => {
+  describe(`# Placeholders list`, () => {
     beforeEach(() => {
       wrapper = mount(TodoLoadingIndicator, {
         propsData: {
@@ -19,10 +19,17 @@ describe(`<TodoLoadingIndicator />`, () => {
       expect(wrapper.find('div.todo-loading-indicator__wrapper').exists()).toBeTruthy();
     });
   
-    it(`할일 개수만큼 할일 요소들이 생성된다`, () => {
+    it(`주어진 길이만큼 항목들이 생성된다`, () => {
       // 3개 할일이 생성된다
       const itemsCount = wrapper.findAll('div.todo-loading-indicator__wrapper > div').length;
       expect(itemsCount).toBe(3);
+    });
+
+    it(`각 항목에는 Indicator 표현을 위한 요소들이 들어있다`, () => {
+      const item = wrapper.find('div.todo-loading-indicator__wrapper > div');
+      expect(item.find('label').exists()).toBeTruthy();
+      expect(item.find('label > input').exists()).toBeTruthy();
+      expect(item.find('label > span').exists()).toBeTruthy();
     });
   
     afterEach(() => {
