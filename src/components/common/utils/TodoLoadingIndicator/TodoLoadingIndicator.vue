@@ -1,15 +1,20 @@
 <template>
-  <div class="todo-loading-indicator__wrapper">
+  <div class="todo-loading-indicator__container">
     <div
       v-for="item in items"
       :key="item.id"
     >
-      <label>
-        <input />
+      <div class="todo-loading-indicator-checkbox__wrapper">
+        <label>
+          <input />
+          <span />
+        </label>
+      </div>
+      <div class="todo-loading-indicator-content__wrapper">
         <span>
           {{ item.desc }}
         </span>
-      </label>
+      </div>
     </div>
   </div>
 </template>

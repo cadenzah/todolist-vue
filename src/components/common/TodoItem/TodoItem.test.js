@@ -67,12 +67,12 @@ describe(`<TodoItem />`, () => {
       expect(wrapper.find('div.todoitem-content__wrapper').exists()).toBe(true);
     });
 
-    it(`할일 내용이 표시되는 <p>`, () => {
+    it(`할일 내용이 표시되는 <span>`, () => {
       // <div class="todoitem-content__wrapper"> 내에 존재
       expect(wrapper.find('div.todoitem-content__wrapper > span').exists()).toBe(true);
     });
 
-    it(`props를 활용하여 <p>에 컨텐츠 주입`, () => {
+    it(`props를 활용하여 <span>에 컨텐츠 주입`, () => {
       // item props로 전달된 데이터를 활용하여 컨텐츠를 표시한다
       wrapper = mount(TodoItem, {
         propsData: {
