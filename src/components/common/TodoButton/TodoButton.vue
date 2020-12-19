@@ -5,7 +5,7 @@
       primary: primary,
       caution: caution,
     }"
-    @click="handleDeleteTodo()"
+    @click="handleClick()"
   >
     <p>
       <slot />
@@ -25,7 +25,7 @@ export default {
       type: Boolean,
       default: () => false,
     },
-    handleDeleteTodo: {
+    handleClick: {
       type: Function,
     },
   },

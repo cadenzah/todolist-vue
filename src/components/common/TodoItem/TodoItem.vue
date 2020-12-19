@@ -22,7 +22,7 @@
     </div>
     <TodoButton
       caution
-      :handleDeleteTodo="handleDeleteTodo"
+      :handleClick="handleDeleteTodo"
     >
       Delete
     </TodoButton>

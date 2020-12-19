@@ -23,6 +23,7 @@ describe(`<TodoButton />`, () => {
     button__primary = mount(TodoButton, {
       propsData: {
         ...items[0],
+        handleClick: items[0].handleDeleteTodo,
       },
       slots: {
         default: 'Confirm'
@@ -31,6 +32,7 @@ describe(`<TodoButton />`, () => {
     button__caution = mount(TodoButton, {
       propsData: {
         ...items[1],
+        handleClick: items[1].handleDeleteTodo,
       },
       slots: {
         default: 'Delete'
@@ -57,7 +59,7 @@ describe(`<TodoButton />`, () => {
     button__caution = mount(TodoButton, {
       propsData: {
         ...items[0],
-        handleDeleteTodo: spy,
+        handleClick: spy,
       },
     });
 
