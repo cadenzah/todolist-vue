@@ -50,10 +50,3 @@ Empty.args = {
   isLoading: false,
   ...actionsData,
 };
-
-export const Loading = Template.bind({});
-Loading.args = {
-  items: todos,
-  isLoading: true,
-  ...actionsData,
-};
