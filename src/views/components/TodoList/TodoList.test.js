@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import sinon, { expectation } from 'sinon';
 
 import TodoList from './TodoList.vue';
-import TodoItem from '../TodoItem/TodoItem.vue';
+import TodoItem from '../../common/TodoItem/TodoItem.vue';
 
 // dummy data
 import { todos, todos_long } from '../../../utils/data';

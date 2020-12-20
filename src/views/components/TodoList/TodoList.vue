@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import TodoItem from '../TodoItem';
-import TodoListEmptyIndicator from '../utils/TodoListEmptyIndicator';
+import TodoItem from '../../common/TodoItem';
+import TodoListEmptyIndicator from '../../common/utils/TodoListEmptyIndicator';
 
 export default {
   name: "TodoList",

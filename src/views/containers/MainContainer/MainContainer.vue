@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import TodoList from '../../common/TodoList';
-import TodoInput from '../../common/TodoInput';
+import TodoList from '../../components/TodoList';
+import TodoInput from '../../components/TodoInput';
 import TodoLoadingIndicator from '../../common/utils/TodoLoadingIndicator';
 
 export default {

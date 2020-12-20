@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import TodoButton from '../TodoButton';
+import TodoButton from '../../common/TodoButton';
 
 export default {
   name: 'TodoInput',
