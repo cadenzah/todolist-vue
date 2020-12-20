@@ -29,7 +29,7 @@ describe(`<TodoInput />`, () => {
 
       wrapper = mount(TodoInput, {
         propsData: {
-          todoDesc: todoDesc,
+          // todoDesc: todoDesc,
           placeholder: "Write a new task to do.",
           handleChangeInput: spyChangeInput,
           handleCreateTodo: spyCreateTodo,
@@ -43,12 +43,12 @@ describe(`<TodoInput />`, () => {
     });
 
     it(`필요한 Attribute를 가진다`, async () => {
-      // console.log(wrapper.props());
       let input = wrapper.find('div.todoinput__wrapper > input');
       let attributes = input.attributes();
-
-      console.log(attributes);
+      
+      // console.log(attributes);
       // ## <input>의 value로 props가 전달 안 되고 있는데 실제로도 그런지 확인 필요 ##
+      // ## 스토리북 실행 및 예제 프로젝트 작성하여 확인 결과 정상 작동한다 ##
       // todoDesc를 value로 가진다
       // expect(attributes.value).toBe("휴식하기");
 
