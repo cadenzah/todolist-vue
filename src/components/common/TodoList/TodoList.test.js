@@ -16,8 +16,6 @@ describe(`<TodoList />`, () => {
         propsData: {
           items: todos, // 2개
           isLoading: false,
-          handleUpdateTodo: () => { },
-          handleDeleteTodo: () => { },
         },
       });
     });
@@ -122,8 +120,6 @@ describe(`<TodoList />`, () => {
         propsData: {
           items: todos, // 2개
           isLoading: false,
-          handleUpdateTodo: () => { },
-          handleDeleteTodo: () => { },
         },
       });
     });

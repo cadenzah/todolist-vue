@@ -44,9 +44,11 @@ export default {
     },
     handleUpdateTodo: {
       type: Function,
+      default: () => {},
     },
     handleDeleteTodo: {
       type: Function,
+      default: () => {},
     }
   },
   computed: {
