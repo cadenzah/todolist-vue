@@ -7,7 +7,7 @@
       autocorrect="off"
       autocapitalize="off"
       spellcheck="false"
-      @input="handleChangeInput('todoDesc')"
+      @input="handleChangeInput('todoDesc')($event)"
     />
     <TodoButton
       primary

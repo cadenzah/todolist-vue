@@ -3,7 +3,9 @@ import sinon, { spy } from 'sinon';
 
 import MainContainer from './MainContainer.vue';
 
-let wrapper = null;
+let wrapper = null,
+    todoInput = null,
+    todoCreateButton = null;
 
 describe(`<MainContainer />`, () => {
   describe(`# Structures`, () => {
@@ -22,7 +24,6 @@ describe(`<MainContainer />`, () => {
       // expect(wrapper.findComponent({ name: 'TodoHeader' }).exists()).toBeTruthy();
       expect(wrapper.findComponent({ name: 'TodoInput' }).exists()).toBeTruthy();
       expect(wrapper.findComponent({ name: 'TodoList' }).exists()).toBeTruthy();
-      expect(wrapper.findComponent({ name: 'TodoLoadingIndicator' }).exists()).toBeTruthy();
     });
   
     it(`$data: Props로 사용될 데이터들을 사용한다`, () => {
@@ -41,17 +42,18 @@ describe(`<MainContainer />`, () => {
     beforeEach(() => {
       // props는 사용되지 않는다
       wrapper = mount(MainContainer);
+
+      // 각 UI 요소들
+      todoInput = wrapper.find('div.todoinput__wrapper > input');
+      todoCreateButton = wrapper.find('div.todoinput__wrapper .todobutton__wrapper');
     });
 
     it(`입력 란에 할일 입력시 todoDesc props가 변경된다`, async () => {
-      const todoInput = wrapper.find('div.todoinput__wrapper > input');
       await todoInput.setValue('휴식하기');
       expect(wrapper.vm.$data.todoDesc).toBe('휴식하기');
     });
   
     it(`할일 추가시 todoList props에 데이터가 갱신된다`, async () => {
-      const todoInput = wrapper.find('div.todoinput__wrapper > input');
-      const todoCreateButton = wrapper.find('div.todoinput__wrapper .todobutton__wrapper');
       await todoInput.setValue('휴식하기');
       await todoCreateButton.trigger('click');
       
@@ -61,8 +63,6 @@ describe(`<MainContainer />`, () => {
     });
   
     it(`할일 목록 내 할일의 체크박스 클릭시 해당 할일의 상태가 변경된다`, async () => {
-      const todoInput = wrapper.find('div.todoinput__wrapper > input');
-      const todoCreateButton = wrapper.find('div.todoinput__wrapper .todobutton__wrapper');
       await todoInput.setValue('휴식하기');
       await todoCreateButton.trigger('click');
 
@@ -72,19 +72,45 @@ describe(`<MainContainer />`, () => {
     });
   
     it(`할일 목록들이 적절한 순서로 정렬되어있다`, async () => {
-      
+      // 2개 할일을 추가하고
+      await todoInput.setValue('휴식하기');
+      await todoCreateButton.trigger('click');
+      await todoInput.setValue('저녁먹기');
+      await todoCreateButton.trigger('click');
+
+      // 그 중 하나를 체크했을 때, 체크된 할일이 아래로 밀려난다
+      let todoItem1st = wrapper.findAllComponents({ name: 'TodoItem' }).at(0);
+      const todoItem1stCheckbox = todoItem1st.find('div.todoitem-checkbox__wrapper > label');
+      await todoItem1stCheckbox.trigger('click');
+
+      todoItem1st = wrapper.findAllComponents({ name: 'TodoItem'}).at(1);
+      expect(todoItem1st.props().item.desc).toBe('휴식하기');
+      expect(todoItem1st.props().item.status).toBe('DONE');
     })
   
     it(`할일 목록 내 할일을 제거시 todoList에서 해당 할일이 제거된다`, async () => {
-  
+      await todoInput.setValue('휴식하기');
+      await todoCreateButton.trigger('click');
+
+      // 추가된 할일의 제거 버튼을 클릭
+      let todoItem = wrapper.findAllComponents({ name: 'TodoItem' }).at(0);
+      const todoItemDeleteButton = todoItem.find('.todobutton__wrapper');
+      await todoItemDeleteButton.trigger('click');
+
+      expect(wrapper.vm.$data.todoList.length).toBe(0);
     });
   
-    it(`현재 데이터 로딩 중일 경우 로딩 UI만 표시된다`, async () => {
-  
-    });
+    // ## 데이어 로드 로직 작성 후에 추가
+    // it(`현재 데이터 로딩 중일 경우 로딩 UI만 표시된다`, async () => {
+    //   wrapper.setData({ isLoading: true });
+    //   expect(wrapper.findComponent({ name: 'TodoLoadingIndicator' }).exists()).toBeTruthy();
+    //   expect(wrapper.findComponent({ name: 'TodoList' }).exists()).toBeFalsy();
+    // });
 
     afterEach(() => {
       wrapper = null;
+      todoInput = null;
+      todoCreateButton = null;
     });
   });
 });

@@ -8,8 +8,8 @@
         v-for="item in sortedItems"
         :key="item.id"
         :item="item"
-        :handleUpdateTodo="handleUpdateTodo"
-        :handleDeleteTodo="handleDeleteTodo"
+        :handleUpdateTodo="() => handleUpdateTodo(item.id)"
+        :handleDeleteTodo="() => handleDeleteTodo(item.id)"
       />
     </div>
     <!-- With empty Todo List, shows guide message -->
