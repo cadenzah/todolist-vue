@@ -50,7 +50,7 @@
     "sass-loader": "^10.1.0",
     "sinon": "^9.2.2",
     "vue": "^2.6.12",
-    "vue-jest": "^3.0.7",
+    "vue-jest": "^4.0.1",
     "vue-loader": "^15.9.5",
     "vue-router": "^3.4.9",
     "vue-style-loader": "^4.1.2",
